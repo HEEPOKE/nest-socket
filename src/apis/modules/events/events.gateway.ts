@@ -22,7 +22,7 @@ export class EventsGateway {
   private server: Server;
 
   @SubscribeMessage('events')
-  handleEvent(@MessageBody() message: string): void {
+  async handleEvent(@MessageBody() message: string) {
     this.server.emit('events', message);
     this.logger.log(message);
   }
