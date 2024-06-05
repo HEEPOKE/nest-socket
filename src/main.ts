@@ -8,8 +8,8 @@ async function bootstrap() {
 
   app.enableCors();
   app.use(helmet());
-  app.setGlobalPrefix('apis');
 
   await app.listen(configs.PORT);
+  console.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();

@@ -1,4 +1,3 @@
-import { Controller } from '@nestjs/common';
 import {
   WebSocketGateway,
   SubscribeMessage,
@@ -14,16 +13,15 @@ import { EventsService } from './events.service';
     origin: '*',
   },
 })
-@Controller('events')
 export class EventsGateway {
   constructor(private readonly eventsService: EventsService) {}
 
   @WebSocketServer()
   private server: Server;
 
-  @SubscribeMessage('event')
+  @SubscribeMessage('events')
   handleEvent(@MessageBody() message: string): void {
-    this.server.emit('event', message);
+    this.server.emit('events', message);
     console.log('====================================');
     console.log(message);
     console.log('====================================');
